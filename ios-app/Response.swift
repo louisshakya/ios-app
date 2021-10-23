@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+struct Response: Decodable {
+    
+    var categories:[Categories]?
+    
+    enum CodingKeys:String, CodingKey {
+        
+        case categories
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.categories = try container.decode([Categories].self, forKey: .categories)
+        
+    }
+}
