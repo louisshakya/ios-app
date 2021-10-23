@@ -6,3 +6,48 @@
 //
 
 import Foundation
+
+class Model {
+    
+    func getCategories() {
+        
+        // Create a URL object
+        let url = URL(string: Constants.API_URL)
+        
+        guard url != nil else {
+            return
+        }
+        
+        // Get a URLSession object
+        let session = URLSession.shared
+        
+        // Geta data task from the URLSession object
+        let dataTask = session.dataTask(with: url!) { (data, response, error) in
+            
+            // Check if there were any errors
+            if error != nil || data == nil {
+                print("an error occured")
+                return
+            }
+            
+            do {
+                
+                // Parsing the data into image objetcs
+                let decoder = JSONDecoder()
+                let response = try decoder.decode(Response.self, from: data!)
+                
+                dump(response)
+                
+            }
+            catch {
+                
+                
+            }
+            
+        }
+        
+        // Make the API Call, Kick off the task
+        dataTask.resume()
+        
+    }
+}
