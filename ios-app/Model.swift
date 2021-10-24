@@ -7,7 +7,13 @@
 
 import Foundation
 
+protocol ModelDelegate {
+    func categoriesFetched(_ categories:[Categories])
+}
+
 class Model {
+    
+    var delegate:ModelDelegate?
     
     func getCategories() {
         
@@ -36,7 +42,16 @@ class Model {
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(Response.self, from: data!)
                 
-                dump(response)
+                if response.categories != nil {
+                    
+                    DispatchQueue.main.async {
+                        
+                        // Call the "categoriesFetched" method of the delegate
+                        self.delegate?.categoriesFetched(response.categories!)
+                    }
+                    
+                }
+//                dump(response)
                 
             }
             catch {
