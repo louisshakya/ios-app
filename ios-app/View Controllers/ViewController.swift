@@ -49,13 +49,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CATEGORYCELL_ID, for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CATEGORYCELL_ID, for: indexPath) as! CategoryTableViewCell
         
         // Configure the cell with the data
         // Get the title for the category
-        let title = self.categories[indexPath.row].strCategory
+        let category = self.categories[indexPath.row]
         
-        cell.textLabel?.text = title
+        cell.setCell(category)
         
         // Return the cell
         return cell
