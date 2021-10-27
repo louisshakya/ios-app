@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Set itself as the delegate of the model 
         model.delegate = self
         
-        model.getCategories()
+        model.getData()
     }
     
     // MARK: - model delegate methods

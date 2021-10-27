@@ -22,6 +22,7 @@ struct Categories : Decodable {
         case strCategoryDescription
     }
     
+    // Decoding instruction on how to map the JSON keyvalue pairs into the properties
     init (from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)

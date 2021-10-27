@@ -15,7 +15,7 @@ class Model {
     
     var delegate:ModelDelegate?
     
-    func getCategories() {
+    func getData() {
         
         // Create a URL object
         let url = URL(string: Constants.API_URL)
@@ -27,12 +27,12 @@ class Model {
         // Get a URLSession object
         let session = URLSession.shared
         
-        // Geta data task from the URLSession object
+        // Get a data task from the URLSession object
         let dataTask = session.dataTask(with: url!) { (data, response, error) in
             
             // Check if there were any errors
             if error != nil || data == nil {
-                print("an error occured")
+                print("an error occured while fetching data")
                 return
             }
             
@@ -49,14 +49,9 @@ class Model {
                         // Call the "categoriesFetched" method of the delegate
                         self.delegate?.categoriesFetched(response.categories!)
                     }
-                    
                 }
-//                dump(response)
-                
             }
             catch {
-                
-                
             }
             
         }
