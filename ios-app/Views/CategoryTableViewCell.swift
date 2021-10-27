@@ -16,7 +16,7 @@ class CategoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var descriptionLable: UILabel!
     
-    var categary:Categories?
+    var category:Categories?
     
     
     override func awakeFromNib() {
@@ -32,24 +32,24 @@ class CategoryTableViewCell: UITableViewCell {
     
     func setCell(_ c:Categories) {
         
-        self.categary = c
+        self.category = c
         
         // Ensure that we have a category
-        guard self.categary != nil else {
+        guard self.category != nil else {
             return
         }
         
         // Set the title and description lable
-        self.titleLable.text = categary?.strCategory
-        self.descriptionLable.text = categary?.strCategoryDescription
+        self.titleLable.text = category?.strCategory
+        self.descriptionLable.text = category?.strCategoryDescription
         
         // Set the thumbnail
         // Check if there is thumbnail or not
-        guard self.categary!.strCategoryThumb != nil else {
+        guard self.category!.strCategoryThumb != nil else {
             return
         }
         
-        let url = URL(string: self.categary!.strCategoryThumb!)
+        let url = URL(string: self.category!.strCategoryThumb!)
         
         // Get the shared URL Session objecty
         let session = URLSession.shared
@@ -60,7 +60,7 @@ class CategoryTableViewCell: UITableViewCell {
             if error == nil && data != nil {
                 
                 // Check that the downloaded url matches the category thumbnail url that this cell is currently set to display
-                if url!.absoluteString != self.categary?.strCategoryThumb {
+                if url!.absoluteString != self.category?.strCategoryThumb {
                     // Category cell has been recycled for another video and no longer matches the thumbnail that was downloaded
                     return
                 }

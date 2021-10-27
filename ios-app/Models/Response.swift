@@ -21,6 +21,7 @@ struct Response: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        // Parse categories
         self.categories = try container.decode([Categories].self, forKey: .categories)
         
     }
