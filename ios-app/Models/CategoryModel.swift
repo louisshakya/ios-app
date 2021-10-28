@@ -7,11 +7,17 @@
 
 import Foundation
 
+protocol CategoryModelDelegate {
+    func  categoryMealsFetched(_ categoryMeals:[CategoryMeal])
+}
+
 class CategoryModel {
     
-    func getData() {
-        
-        let url = URL(string: Constants.CATEGORY_MEAL_API_URL+"beef")
+    var delegate:CategoryModelDelegate?
+    
+    func getData(_ categoryTitle:String) {
+        let categoryMealURL = Constants.CATEGORY_MEAL_API_URL + categoryTitle
+        let url = URL(string: categoryMealURL)
         
         guard url != nil else {
             return
@@ -31,11 +37,19 @@ class CategoryModel {
 
             do {
 
-                // Parsing the data into image objects
+                // Parsing the data into categoryMeals objects
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(CategoryResponse.self, from: data!)
                 
-                dump(response)
+                if response.meals != nil {
+                    
+                    DispatchQueue.main.async {
+                        
+                        // Call the "categoriesFetched" method of the delegate
+                        self.delegate?.categoryMealsFetched(response.meals!)
+                    }
+                }
+//                dump(response)
                 
             }
             catch {

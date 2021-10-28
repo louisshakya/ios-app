@@ -38,7 +38,7 @@ class Model {
             
             do {
                 
-                // Parsing the data into image objetcs
+                // Parsing the data into category objetcs
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(Response.self, from: data!)
                 
