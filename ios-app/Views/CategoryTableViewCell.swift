@@ -40,8 +40,8 @@ class CategoryTableViewCell: UITableViewCell {
         }
         
         // Set the title and description lable
-        self.titleLable.text = category?.strCategory
-        self.descriptionLable.text = category?.strCategoryDescription
+        self.titleLable.text = category!.strCategory
+        self.descriptionLable.text = category!.strCategoryDescription
         
         // Set the thumbnail
         // Check if there is thumbnail or not
@@ -61,7 +61,7 @@ class CategoryTableViewCell: UITableViewCell {
                 
                 // Check that the downloaded url matches the category thumbnail url that this cell is currently set to display
                 if url!.absoluteString != self.category?.strCategoryThumb {
-                    // Category cell has been recycled for another video and no longer matches the thumbnail that was downloaded
+                    // Category cell has been recycled for another category and no longer matches the thumbnail that was downloaded
                     return
                 }
                 

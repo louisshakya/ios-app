@@ -13,4 +13,5 @@ struct Constants {
     static var CATEGORY_MEAL_API_URL = "https://www.themealdb.com/api/json/v1/1/filter.php?c="
     
     static var CATEGORYCELL_ID = "CategoryCell"
+    static var CATEGORYMEALCELL_ID = "CategoryMealCell"
 }

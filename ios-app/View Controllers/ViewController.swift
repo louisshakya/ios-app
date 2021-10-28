@@ -17,9 +17,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        // Set itself as the dataSource
+        // Set itself as the dataSource and delegate
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -27,6 +26,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         model.delegate = self
         
         model.getData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Confirm that a category was selected
+        guard tableView.indexPathForSelectedRow != nil else {
+            return
+        }
+        
+        // Get a reference to the category that was tapped on
+        let selectedCategory = categories[tableView.indexPathForSelectedRow!.row]
+        
+        // Get a reference to the meal view controller
+        let categoryMealVC = segue.destination as! MealViewController
+        
+        // Set the category property of the meal view controller
+        categoryMealVC.category = selectedCategory
+        
+        
     }
     
     // MARK: - model delegate methods
@@ -44,10 +62,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     // dataSource methods
+    
+    // How many rows to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
     
+    // What data to display
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CATEGORYCELL_ID, for: indexPath) as! CategoryTableViewCell
