@@ -17,6 +17,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Set itself as the dataSource and delegate
         categoryMealTableView.dataSource = self
         categoryMealTableView.delegate = self
