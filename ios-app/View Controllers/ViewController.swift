@@ -30,21 +30,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if (segue.identifier == "categoriesToMealsList") {
+            
         // Confirm that a category was selected
-        guard tableView.indexPathForSelectedRow != nil else {
-            return
+            guard tableView.indexPathForSelectedRow != nil else {
+                return
+            }
+            
+            // Get a reference to the category that was tapped on
+            let selectedCategory = categories[tableView.indexPathForSelectedRow!.row]
+            
+            // Get a reference to the meal view controller
+            let categoryMealVC = segue.destination as! MealViewController
+            
+            // Set the category property of the meal view controller
+            categoryMealVC.category = selectedCategory
+            
         }
-        
-        // Get a reference to the category that was tapped on
-        let selectedCategory = categories[tableView.indexPathForSelectedRow!.row]
-        
-        // Get a reference to the meal view controller
-        let categoryMealVC = segue.destination as! MealViewController
-        
-        // Set the category property of the meal view controller
-        categoryMealVC.category = selectedCategory
-        
-        
     }
     
     // MARK: - model delegate methods

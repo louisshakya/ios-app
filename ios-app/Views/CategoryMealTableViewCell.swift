@@ -9,6 +9,8 @@ import UIKit
 
 class CategoryMealTableViewCell: UITableViewCell {
     
+    
+    
     @IBOutlet weak var categoryMealLabel: UILabel!
     
     @IBOutlet weak var categoryMealImageView: UIImageView!
