@@ -11,6 +11,10 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var categoryMealTableView: UITableView!
     
+    
+    @IBOutlet weak var selectedCategoryTitle: UILabel!
+    
+    
     var categoryMealsModel = CategoryModel()
     var categoryMeals = [CategoryMeal]()
     var category:Categories?
@@ -29,9 +33,31 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return
         }
         
+        self.selectedCategoryTitle.text = category!.strCategory!
+        
         categoryMealsModel.getData(category!.strCategory!)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "mealsListToMeal") {
+            
+        // Confirm that a category was selected
+            guard categoryMealTableView.indexPathForSelectedRow != nil else {
+                return
+            }
+            
+            // Get a reference to the category that was tapped on
+            let selectedCategoryMeal = categoryMeals[categoryMealTableView.indexPathForSelectedRow!.row]
+            
+            // Get a reference to the meal view controller
+            let mealVC = segue.destination as! SingleMealViewController
+            
+            // Set the category property of the meal view controller
+            mealVC.categoryMeal = selectedCategoryMeal
+            
+        }
+    }
     
     // MARK: - category model delegate methods
     func categoryMealsFetched(_ categoryMeals: [CategoryMeal]) {

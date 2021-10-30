@@ -18,10 +18,12 @@ struct MealResponse: Decodable {
     }
     
     init(from decoder: Decoder) throws {
-        
+        print("i was called in meal response")
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        print("created container")
         
         self.meals = try container.decode([SingleMeal].self, forKey: .meals)
+        print("successfully created meal response")
         
     }
     

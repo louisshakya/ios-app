@@ -131,7 +131,7 @@ struct SingleMeal : Decodable {
         self.strIngredient17 = try container.decode(String.self, forKey: .strIngredient17)
         self.strIngredient18 = try container.decode(String.self, forKey: .strIngredient18)
         self.strIngredient19 = try container.decode(String.self, forKey: .strIngredient19)
-        self.strIngredient20 = try container.decode(String.self, forKey: .strIngredient10)
+        self.strIngredient20 = try container.decode(String.self, forKey: .strIngredient20)
         
         // Parsing strMeasures
         self.strMeasure1 = try container.decode(String.self, forKey: .strMeasure1)
@@ -153,7 +153,7 @@ struct SingleMeal : Decodable {
         self.strMeasure17 = try container.decode(String.self, forKey: .strMeasure17)
         self.strMeasure18 = try container.decode(String.self, forKey: .strMeasure18)
         self.strMeasure19 = try container.decode(String.self, forKey: .strMeasure19)
-        self.strMeasure20 = try container.decode(String.self, forKey: .strMeasure10)
+        self.strMeasure20 = try container.decode(String.self, forKey: .strMeasure20)
     
     }
     
