@@ -56,6 +56,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Set the returned categories to our categories property
         self.categories = categories
         
+        self.categories = self.categories.sorted(by: {$0.strCategory! < $1.strCategory!})
+        
         // Refresh the tableview
         tableView.reloadData()
     }

@@ -65,6 +65,8 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Set the returned category meals to our category meal property
         self.categoryMeals = categoryMeals
         
+        self.categoryMeals = self.categoryMeals.sorted(by: {$0.strMeal! < $1.strMeal!})
+        
         // Refresh the tableview
         categoryMealTableView.reloadData()
         
