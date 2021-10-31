@@ -18,11 +18,8 @@ class SingleMealModel {
     
     func getData(_ mealID: String) {
         
-        print("i am inside single meal model get data")
         
         let singleMealURL = Constants.SINGLE_MEAL_API_URL + mealID
-        
-        print(singleMealURL)
         
         let url = URL(string: singleMealURL)
         
@@ -34,7 +31,7 @@ class SingleMealModel {
         
         let dataTask = session.dataTask(with: url!) { data, response, error in
             
-            print("creating data task")
+           
             if error != nil && data == nil {
                 print("An error occured while fetching data")
             }
@@ -43,7 +40,7 @@ class SingleMealModel {
                 
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(MealResponse.self, from: data!)
-                print("created response")
+                
                 if response.meals != nil {
                     
                     DispatchQueue.main.async {
@@ -56,6 +53,7 @@ class SingleMealModel {
 
             }
             catch {
+                print("caught error while parsing data")
             }
             
             
