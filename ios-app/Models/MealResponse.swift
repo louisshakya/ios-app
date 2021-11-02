@@ -21,6 +21,7 @@ struct MealResponse: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        // Parse meals
         self.meals = try container.decode([SingleMeal].self, forKey: .meals)
         
     }

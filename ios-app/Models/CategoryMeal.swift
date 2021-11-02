@@ -24,10 +24,13 @@ struct CategoryMeal : Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        // Parse strMeal
         self.strMeal = try container.decode(String.self, forKey: .strMeal)
         
+        // Parse strMealthumb
         self.strMealThumb = try container.decode(String.self, forKey: .strMealThumb)
         
+        // Parse idMeal
         self.idMeal = try container.decode(String.self, forKey: .idMeal)
         
     }

@@ -17,16 +17,16 @@ class SingleMealViewController: UIViewController, SingleMealModelDelegate {
     
     @IBOutlet weak var mealMeasureLabel: UILabel!
     
-    
     var singleMealModel = SingleMealModel()
     var singleMeal = [SingleMeal]()
     var categoryMeal:CategoryMeal?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Set itself as the delegate
         singleMealModel.delegate = self
         
         guard categoryMeal != nil else {
@@ -43,6 +43,7 @@ class SingleMealViewController: UIViewController, SingleMealModelDelegate {
         
         self.singleMeal = singleMeal
         
+        // Set the title and instruction label
         for items in self.singleMeal {
             
             self.mealTitleLabel.text = items.strMeal
@@ -50,6 +51,7 @@ class SingleMealViewController: UIViewController, SingleMealModelDelegate {
             
         }
         
+        // Create an ingredients array to store all the ingredients of the single meal
         var ingredients = [String]()
         ingredients.append(self.singleMeal[0].strIngredient1 ?? "")
         ingredients.append(self.singleMeal[0].strIngredient2 ?? "")
@@ -71,9 +73,11 @@ class SingleMealViewController: UIViewController, SingleMealModelDelegate {
         ingredients.append(self.singleMeal[0].strIngredient18 ?? "")
         ingredients.append(self.singleMeal[0].strIngredient19 ?? "")
         ingredients.append(self.singleMeal[0].strIngredient20 ?? "")
-
+        
+        // Filter the ingredients array to remove any nil or empty values
         ingredients = ingredients.filter({$0 != "" || $0 != " "})
 
+        // Create a measures array to store all the measures of the single meal
         var measures = [String]()
         measures.append(self.singleMeal[0].strMeasure1 ?? "")
         measures.append(self.singleMeal[0].strMeasure2 ?? "")
@@ -96,8 +100,10 @@ class SingleMealViewController: UIViewController, SingleMealModelDelegate {
         measures.append(self.singleMeal[0].strMeasure19 ?? "")
         measures.append(self.singleMeal[0].strMeasure20 ?? "")
 
+        // Filter the measures array to remove any nil or empty values
         measures = measures.filter({$0 != "" || $0 != " "})
 
+        // Set the ingredients and measure label seperated by "\n"
         self.mealIngredientLable.text = ingredients.joined(separator: "\n")
         self.mealMeasureLabel.text = measures.joined(separator: "\n")
         
