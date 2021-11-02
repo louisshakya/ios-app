@@ -9,8 +9,6 @@ import UIKit
 
 class CategoryMealTableViewCell: UITableViewCell {
     
-    
-    
     @IBOutlet weak var categoryMealLabel: UILabel!
     
     @IBOutlet weak var categoryMealImageView: UIImageView!
@@ -24,10 +22,10 @@ class CategoryMealTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
+    // Create a setCell function
     func setCell(_ c:CategoryMeal) {
         
         self.categorymeals = c
@@ -45,7 +43,7 @@ class CategoryMealTableViewCell: UITableViewCell {
             return
         }
         
-        // Download the thumbnail data
+        // Create a URL object
         let url = URL(string: self.categorymeals!.strMealThumb!)
         
         // Get the shared URL Session object
@@ -54,6 +52,7 @@ class CategoryMealTableViewCell: UITableViewCell {
         // Create a data task
         let dataTaks = session.dataTask(with: url!) { data, response, error in
             
+            // Check if there were any errors
             if error == nil && data != nil {
                 
                 // Check that the downloaded url matches the caategory meal thumbnail url that this cell is currently set to display

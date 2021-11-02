@@ -9,7 +9,6 @@ import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
     @IBOutlet weak var titleLable: UILabel!
@@ -30,6 +29,7 @@ class CategoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // Create a setcell function
     func setCell(_ c:Categories) {
         
         self.category = c
@@ -49,6 +49,7 @@ class CategoryTableViewCell: UITableViewCell {
             return
         }
         
+        // Create a url object
         let url = URL(string: self.category!.strCategoryThumb!)
         
         // Get the shared URL Session objecty
@@ -57,6 +58,7 @@ class CategoryTableViewCell: UITableViewCell {
         // Cereate a data task
         let dataTask = session.dataTask(with: url!) { data, response, error in
             
+            // Check if there were any errors
             if error == nil && data != nil {
                 
                 // Check that the downloaded url matches the category thumbnail url that this cell is currently set to display
@@ -72,7 +74,6 @@ class CategoryTableViewCell: UITableViewCell {
                 DispatchQueue.main.async {
                     self.thumbnailImageView.image = image
                 }
-                
             }
         }
         // Start data task

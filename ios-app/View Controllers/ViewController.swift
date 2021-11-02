@@ -30,9 +30,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        // Check for the segue called
         if (segue.identifier == "categoriesToMealsList") {
             
-        // Confirm that a category was selected
+            // Confirm that a category was selected
             guard tableView.indexPathForSelectedRow != nil else {
                 return
             }
@@ -56,6 +57,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Set the returned categories to our categories property
         self.categories = categories
         
+        // Sort the categories array in ascending order
         self.categories = self.categories.sorted(by: {$0.strCategory! < $1.strCategory!})
         
         // Refresh the tableview
@@ -63,7 +65,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     // MARK: - tableView Methods
-    
     
     // dataSource methods
     
@@ -78,7 +79,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CATEGORYCELL_ID, for: indexPath) as! CategoryTableViewCell
         
         // Configure the cell with the data
-        // Get the title for the category
         let category = self.categories[indexPath.row]
         
         cell.setCell(category)

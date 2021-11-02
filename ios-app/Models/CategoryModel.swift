@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Protocol for CategoryModel
 protocol CategoryModelDelegate {
     func  categoryMealsFetched(_ categoryMeals:[CategoryMeal])
 }
@@ -16,7 +17,11 @@ class CategoryModel {
     var delegate:CategoryModelDelegate?
     
     func getData(_ categoryTitle:String) {
+        
+        // Create new url containing the category title to access the end point of the api
         let categoryMealURL = Constants.CATEGORY_MEAL_API_URL + categoryTitle
+        
+        // Create URL Object
         let url = URL(string: categoryMealURL)
         
         guard url != nil else {
@@ -49,14 +54,10 @@ class CategoryModel {
                         self.delegate?.categoryMealsFetched(response.meals!)
                     }
                 }
-//                dump(response)
-                
             }
             catch {
+                print("Error occurred while parsing data")
             }
-
-            
-            
         }
         
         // Make the API Call, Kick off the task

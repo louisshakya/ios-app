@@ -11,9 +11,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var categoryMealTableView: UITableView!
     
-    
     @IBOutlet weak var selectedCategoryTitle: UILabel!
-    
     
     var categoryMealsModel = CategoryModel()
     var categoryMeals = [CategoryMeal]()
@@ -40,9 +38,10 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        // Check for the segue called
         if (segue.identifier == "mealsListToMeal") {
             
-        // Confirm that a category was selected
+            // Confirm that a category was selected
             guard categoryMealTableView.indexPathForSelectedRow != nil else {
                 return
             }
@@ -65,6 +64,7 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Set the returned category meals to our category meal property
         self.categoryMeals = categoryMeals
         
+        // Sort categoryMeals in ascending order
         self.categoryMeals = self.categoryMeals.sorted(by: {$0.strMeal! < $1.strMeal!})
         
         // Refresh the tableview
@@ -87,10 +87,12 @@ class MealViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let cell = categoryMealTableView.dequeueReusableCell(withIdentifier: Constants.CATEGORYMEALCELL_ID, for: indexPath) as! CategoryMealTableViewCell
         
+        // Configure the cell with the data
         let categoryMeals = self.categoryMeals[indexPath.row]
         
         cell.setCell(categoryMeals)
-
+        
+        // Return the cell
         return cell
     }
     

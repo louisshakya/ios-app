@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Protocol for Model
 protocol ModelDelegate {
     func categoriesFetched(_ categories:[Categories])
 }
@@ -52,8 +53,8 @@ class Model {
                 }
             }
             catch {
+                print("Error occurred while parsing data")
             }
-            
         }
         
         // Make the API Call, Kick off the task
